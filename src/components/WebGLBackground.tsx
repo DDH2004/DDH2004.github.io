@@ -45,19 +45,48 @@ export function WebGLBackground() {
     let mouseX = 0;
     let mouseY = 0;
 
+    // Scroll tracking
+    let lastScrollTop = 0;
+    let scrollDirection = 0;
+    let scrollVelocity = 0;
+    const scrollFactor = 0.0001; // Controls how much scroll affects particles
+
     const handleMouseMove = (event: MouseEvent) => {
       mouseX = event.clientX / window.innerWidth - 0.5;
       mouseY = event.clientY / window.innerHeight - 0.5;
     };
 
+    const handleScroll = () => {
+      // Get current scroll position
+      const st = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // Determine scroll direction and velocity
+      scrollDirection = st > lastScrollTop ? 1 : -1;
+      scrollVelocity = Math.abs(st - lastScrollTop) * scrollFactor;
+      
+      // Remember the last scroll position
+      lastScrollTop = st <= 0 ? 0 : st;
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll);
 
     // Animation
     const animate = () => {
       requestAnimationFrame(animate);
 
+      // Base rotation
       particlesMesh.rotation.y += 0.0003;
       particlesMesh.rotation.x += 0.0003;
+      
+      // Apply scroll effect
+      if (scrollDirection !== 0 && scrollVelocity > 0) {
+        // Move particles based on scroll direction
+        particlesMesh.position.y += scrollDirection * scrollVelocity;
+        
+        // Optional: gradually reset scroll velocity for smoother effect
+        scrollVelocity *= 0.95;
+      }
 
       // Smooth camera movement based on mouse position
       camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
@@ -81,6 +110,7 @@ export function WebGLBackground() {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleScroll);
       containerRef.current?.removeChild(renderer.domElement);
       particlesGeometry.dispose();
       particlesMaterial.dispose();
