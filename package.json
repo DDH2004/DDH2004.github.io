@@ -5,11 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-<<<<<<< HEAD
     "build": "tsc && vite build",
-=======
-    "build": "vite build",
->>>>>>> dev
     "lint": "eslint .",
     "preview": "vite preview"
   },
