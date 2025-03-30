@@ -48,11 +48,11 @@ function ProjectCard({ title, description, tech, link }: { title: string; descri
 
 function App() {
   return (
-    <div className="min-h-screen text-white">
+    <div className="min-h-screen text-white snap-y snap-mandatory overflow-y-scroll h-screen">
       <WebGLBackground />
       
       {/* Hero Section */}
-      <header className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      <header className="min-h-screen flex items-center justify-center relative overflow-hidden snap-start">
         <div className="container mx-auto px-4 py-16 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-teal-400 animate-fade-in">
@@ -77,7 +77,7 @@ function App() {
       </header>
 
       {/* Skills Section */}
-      <section className="min-h-screen py-20">
+      <section className="min-h-screen py-20 snap-start">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Technical Skills</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -90,7 +90,7 @@ function App() {
       </section>
 
       {/* Projects Section */}
-      <section className="min-h-screen py-20">
+      <section className="min-h-screen py-20 snap-start">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Featured Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -105,10 +105,12 @@ function App() {
       </section>
 
       {/* Blog Section */}
-      <BlogSection />
+      <div className="snap-start">
+        <BlogSection />
+      </div>
 
       {/* Contact Section */}
-      <section className="min-h-screen py-20">
+      <section className="min-h-screen py-20 snap-start">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-8">Get In Touch</h2>
           <p className="text-xl text-gray-300 mb-8">
