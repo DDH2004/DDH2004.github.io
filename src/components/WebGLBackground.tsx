@@ -56,8 +56,8 @@ export function WebGLBackground() {
     const animate = () => {
       requestAnimationFrame(animate);
 
-      particlesMesh.rotation.y += 0.001;
-      particlesMesh.rotation.x += 0.001;
+      particlesMesh.rotation.y += 0.0003;
+      particlesMesh.rotation.x += 0.0003;
 
       // Smooth camera movement based on mouse position
       camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
