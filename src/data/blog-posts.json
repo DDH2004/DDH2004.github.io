@@ -1,0 +1,46 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "Getting Started with React and TypeScript",
+      "content": "React and TypeScript are a powerful combination for building web applications. In this post, we'll explore the basics of setting up a new project and some best practices to follow.\n\nTypeScript adds static typing to JavaScript, making it easier to catch errors early in development and improve code maintainability. When combined with React's component-based architecture, you get a robust foundation for building scalable applications.\n\nKey benefits of using TypeScript with React:\n- Type safety for props and state\n- Better IDE support and autocompletion\n- Easier refactoring and maintenance\n- Catch errors before runtime",
+      "created_at": "2024-03-30T10:00:00Z",
+      "image_url": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "2",
+      "title": "Modern CSS Techniques",
+      "content": "CSS has evolved significantly in recent years. Let's look at some modern techniques that can improve your styling workflow.\n\nFrom CSS Grid to Custom Properties (variables) and modern layout techniques, there are many powerful features that make styling more maintainable and flexible than ever before.\n\nSome game-changing features:\n- CSS Grid for complex layouts\n- Custom Properties for dynamic styling\n- Container Queries for responsive design\n- CSS Nesting for better organization",
+      "created_at": "2024-03-29T15:30:00Z",
+      "image_url": "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "3",
+      "title": "The Future of Web Development: AI and Machine Learning",
+      "content": "Artificial Intelligence and Machine Learning are revolutionizing web development. From automated testing to intelligent code completion, these technologies are changing how we build applications.\n\nIn this post, we'll explore practical applications of AI in web development and how you can start incorporating these tools into your workflow.\n\nKey areas where AI is making an impact:\n- Code generation and completion\n- Automated testing and bug detection\n- Performance optimization\n- User behavior analysis",
+      "created_at": "2024-03-28T09:15:00Z",
+      "image_url": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "4",
+      "title": "Building Accessible Web Applications",
+      "content": "Accessibility is not just a nice-to-have feature—it's essential for creating inclusive web applications that everyone can use. This guide covers fundamental principles and practical techniques for building accessible websites.\n\nWe'll explore ARIA attributes, keyboard navigation, semantic HTML, and other crucial aspects of web accessibility.\n\nKey topics covered:\n- Semantic HTML structure\n- ARIA roles and attributes\n- Keyboard navigation\n- Color contrast and visual accessibility\n- Screen reader compatibility",
+      "created_at": "2024-03-27T14:45:00Z",
+      "image_url": "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "5",
+      "title": "Performance Optimization Techniques",
+      "content": "Website performance directly impacts user experience and conversion rates. In this comprehensive guide, we'll explore various techniques to optimize your web application's performance.\n\nFrom code splitting to image optimization, learn how to make your site blazing fast.\n\nOptimization strategies covered:\n- Code splitting and lazy loading\n- Image optimization and modern formats\n- Caching strategies\n- Bundle size optimization\n- Network performance improvements",
+      "created_at": "2024-03-26T11:20:00Z",
+      "image_url": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "6",
+      "title": "State Management in Modern React",
+      "content": "State management is a crucial aspect of React applications. This post compares different state management solutions and helps you choose the right one for your project.\n\nFrom built-in hooks to external libraries, we'll explore the pros and cons of each approach.\n\nTopics covered:\n- useState and useReducer\n- Context API patterns\n- Redux vs. Zustand\n- Server state management\n- State persistence strategies",
+      "created_at": "2024-03-25T16:30:00Z",
+      "image_url": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80"
+    }
+  ]
+}
