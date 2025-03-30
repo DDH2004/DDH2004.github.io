@@ -95,21 +95,9 @@ function App() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Featured Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <ProjectCard
-              title="AI Chat Application"
-              description="Real-time chat application with AI-powered responses using OpenAI's GPT-3"
-              tech={["React", "Node.js", "OpenAI API"]}
-              link="https://github.com"
-            />
-            <ProjectCard
-              title="Data Visualization Dashboard"
-              description="Interactive dashboard for visualizing large datasets with real-time updates"
-              tech={["D3.js", "React", "Python"]}
-              link="https://github.com"
-            />
-            <ProjectCard
-              title="Blockchain Explorer"
-              description="Web application for exploring and analyzing blockchain transactions"
-              tech={["TypeScript", "Web3.js", "PostgreSQL"]}
+              title="TBD"
+              description="TBD"
+              tech={["TBD"]}
               link="https://github.com"
             />
           </div>
