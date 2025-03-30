@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import { plugin as markdown } from 'vite-plugin-markdown';
 
 export default defineConfig({
+<<<<<<< HEAD
   base: './', // Change from '/DDH2004.github.io/' to './'
   plugins: [
     react(),
@@ -20,4 +21,12 @@ export default defineConfig({
       }
     }
   }
+=======
+  plugins: [
+    react(),
+    markdown({
+      mode: ['react', 'raw'] // This enables both React components and raw string imports
+    })
+  ]
+>>>>>>> dev
 });
