@@ -48,3 +48,7 @@
   transform: translateZ(-1px) scale(2);
   z-index: -1;
 }
+
+html {
+  scroll-behavior: smooth;
+}
