@@ -24,7 +24,7 @@ function Navbar() {
         <ul className="flex gap-4">
           {navItems.map((item) => (
             <li key={item.href}>
-              <a href={item.href} className="text-gray-200 hover:text-blue-400 transition-colors px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <a href={item.href} className="text-accent hover:text-primary transition-colors px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-primary">
                 {item.label}
               </a>
             </li>
@@ -229,28 +229,28 @@ function ClubsSection() {
 
 function App() {
   return (
-    <div className="min-h-screen text-white snap-y snap-mandatory overflow-y-scroll h-screen">
+  <div className="min-h-screen bg-gradient-to-b from-dark via-blackish to-blackish text-accent snap-y snap-mandatory overflow-y-scroll h-screen">
       <WebGLBackground />
       
       {/* Hero Section */}
       <header className="min-h-screen flex items-center justify-center relative overflow-hidden snap-start">
         <div className="container mx-auto px-4 py-16 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-teal-400 animate-fade-in">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary animate-fade-in">
               Akhil Devarasetty
             </h1>
-                <p className="text-xl md:text-2xl text-gray-300 mb-8 animate-fade-in animate-delay-200">
+                <p className="text-xl md:text-2xl text-accent mb-8 animate-fade-in animate-delay-200">
                   Computer Science and Engineering Student
                 </p>
                 <Navbar />
             <div className="flex justify-center gap-6 animate-fade-in animate-delay-300">
-              <a href="https://github.com/DDH2004" className="text-gray-300 hover:text-white transition-colors hover:scale-110 transform duration-200">
+              <a href="https://github.com/DDH2004" className="text-accent hover:text-primary transition-colors hover:scale-110 transform duration-200">
                 <Github size={24} />
               </a>
-              <a href="https://www.linkedin.com/in/akhil-devarasetty-073a72244/" className="text-gray-300 hover:text-white transition-colors hover:scale-110 transform duration-200">
+              <a href="https://www.linkedin.com/in/akhil-devarasetty-073a72244/" className="text-accent hover:text-primary transition-colors hover:scale-110 transform duration-200">
                 <Linkedin size={24} />
               </a>
-              <a href="mailto:akhild2004@gmail.com" className="text-gray-300 hover:text-white transition-colors hover:scale-110 transform duration-200">
+              <a href="mailto:akhild2004@gmail.com" className="text-accent hover:text-primary transition-colors hover:scale-110 transform duration-200">
                 <Mail size={24} />
               </a>
             </div>
@@ -290,7 +290,7 @@ function App() {
           </p>
           <a
             href="mailto:akhild2004@gmail.com"
-            className="inline-block px-8 py-3 bg-gradient-to-r from-blue-500 to-teal-500 rounded-lg text-lg font-semibold hover:opacity-90 transition-all duration-300 hover:scale-105 transform"
+            className="inline-block px-8 py-3 bg-gradient-to-r from-primary to-secondary rounded-lg text-lg font-semibold hover:opacity-90 transition-all duration-300 hover:scale-105 transform"
           >
             Say Hello
           </a>

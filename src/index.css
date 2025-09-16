@@ -51,4 +51,14 @@
 
 html {
   scroll-behavior: smooth;
+  --color-primary: #cb0247;
+  --color-dark: #01031e;
+  --color-accent: #81a9ae;
+  --color-secondary: #126c8e;
+  --color-blackish: #000520;
+}
+
+body {
+  background: linear-gradient(180deg, var(--color-dark) 0%, var(--color-blackish) 100%);
+  color: var(--color-accent);
 }

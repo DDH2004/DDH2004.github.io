@@ -118,10 +118,10 @@ export function WebGLBackground() {
   }, []);
 
   return (
-    <div 
-      ref={containerRef} 
-      className="fixed inset-0 -z-10 pointer-events-none"
-      style={{ background: 'linear-gradient(to bottom, #000000, #0a192f)' }}
+    <div
+      ref={containerRef}
+      className="fixed inset-0 z-0 pointer-events-none"
+      style={{ background: 'transparent' }}
     />
   );
 }
