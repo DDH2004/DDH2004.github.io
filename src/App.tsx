@@ -6,6 +6,34 @@ import { BlogSection } from './components/BlogSection';
 import { WebGLBackground } from './components/WebGLBackground';
 import cvData from './data/cv';
 
+// Simple responsive navbar
+function Navbar() {
+  const navItems = [
+    { label: 'Education', href: '#education' },
+    { label: 'Skills', href: '#skills' },
+    { label: 'Experience', href: '#experience' },
+    { label: 'Projects', href: '#projects' },
+    { label: 'Certifications', href: '#certifications' },
+    { label: 'Clubs', href: '#clubs' },
+    { label: 'Contact', href: '#contact' },
+  ];
+  return (
+    <nav className="fixed top-0 left-0 w-full z-50 bg-black/70 backdrop-blur border-b border-white/10">
+      <div className="container mx-auto px-4 flex justify-between items-center h-16">
+        <span className="font-bold text-lg text-white tracking-wide">My Portfolio</span>
+        <ul className="flex gap-4">
+          {navItems.map((item) => (
+            <li key={item.href}>
+              <a href={item.href} className="text-gray-200 hover:text-blue-400 transition-colors px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+  );
+}
 
 // Utility components for rendering sections
 function SectionTitle({ children }: { children: React.ReactNode }) {
@@ -14,11 +42,11 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 
 function EducationSection() {
   return (
-    <section className="min-h-screen py-20 snap-start">
+    <section id="education" className="min-h-screen py-20 snap-start">
       <div className="container mx-auto px-4">
         <SectionTitle>Education</SectionTitle>
         <div className="space-y-8 max-w-3xl mx-auto">
-          {cvData.education.map((edu, i) => (
+          {[...cvData.education].reverse().map((edu, i) => (
             <div key={i} className="bg-white/5 rounded-xl p-6">
               <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
                 <div>
@@ -45,28 +73,38 @@ function EducationSection() {
   );
 }
 
+import type { TechnicalSkills } from './data/cv';
+
 function SkillsSection() {
+  const skills = cvData.skills;
+  const skillCategories: { key: keyof TechnicalSkills; label: string; color: string }[] = [
+    { key: 'programmingLanguages', label: 'Programming Languages', color: 'bg-blue-500/20 text-blue-300' },
+    { key: 'frameworksLibraries', label: 'Frameworks & Libraries', color: 'bg-green-500/20 text-green-300' },
+    { key: 'dataScienceAnalytics', label: 'Data Science & Analytics', color: 'bg-cyan-500/20 text-cyan-300' },
+    { key: 'cloudDevOps', label: 'Cloud & DevOps', color: 'bg-purple-500/20 text-purple-300' },
+    { key: 'cybersecurity', label: 'Cybersecurity', color: 'bg-red-500/20 text-red-300' },
+    { key: 'databases', label: 'Databases', color: 'bg-pink-500/20 text-pink-300' },
+    { key: 'blockchainWeb3', label: 'Blockchain & Web3', color: 'bg-yellow-500/20 text-yellow-700' },
+    { key: 'roboticsIoT', label: 'Robotics & IoT', color: 'bg-teal-500/20 text-teal-300' },
+    { key: 'aiGenerativeAI', label: 'AI & Generative AI', color: 'bg-indigo-500/20 text-indigo-300' },
+  ];
   return (
-    <section className="min-h-screen py-20 snap-start">
+  <section id="skills" className="min-h-screen py-20 snap-start">
       <div className="container mx-auto px-4">
-        <SectionTitle>Core Skills</SectionTitle>
+        <SectionTitle>Technical Skills</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <div className="bg-white/5 rounded-xl p-6">
-            <h3 className="text-xl font-semibold mb-2">Hard Skills</h3>
-            <ul className="flex flex-wrap gap-2">
-              {cvData.skills.hard.map((skill, i) => (
-                <li key={i} className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-sm">{skill}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="bg-white/5 rounded-xl p-6">
-            <h3 className="text-xl font-semibold mb-2">Soft Skills</h3>
-            <ul className="flex flex-wrap gap-2">
-              {cvData.skills.soft.map((skill, i) => (
-                <li key={i} className="px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 text-sm">{skill}</li>
-              ))}
-            </ul>
-          </div>
+          {skillCategories.map(({ key, label, color }) => (
+            skills[key] && skills[key].length > 0 && (
+              <div key={key} className="bg-white/5 rounded-xl p-6">
+                <h3 className="text-xl font-semibold mb-2">{label}</h3>
+                <ul className="flex flex-wrap gap-2">
+                  {skills[key].map((skill, i) => (
+                    <li key={i} className={`px-3 py-1 rounded-full ${color} text-sm`}>{skill}</li>
+                  ))}
+                </ul>
+              </div>
+            )
+          ))}
         </div>
       </div>
     </section>
@@ -75,11 +113,11 @@ function SkillsSection() {
 
 function ExperienceSection() {
   return (
-    <section className="min-h-screen py-20 snap-start">
+    <section id="experience" className="min-h-screen py-20 snap-start">
       <div className="container mx-auto px-4">
         <SectionTitle>Experience</SectionTitle>
         <div className="space-y-8 max-w-3xl mx-auto">
-          {cvData.experience.map((exp, i) => (
+          {[...cvData.experience].reverse().map((exp, i) => (
             <div key={i} className="bg-white/5 rounded-xl p-6">
               <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
                 <div>
@@ -103,11 +141,11 @@ function ExperienceSection() {
 
 function ProjectsSection() {
   return (
-    <section className="min-h-screen py-20 snap-start">
+    <section id="projects" className="min-h-screen py-20 snap-start">
       <div className="container mx-auto px-4">
         <SectionTitle>Projects</SectionTitle>
         <div className="space-y-8 max-w-3xl mx-auto">
-          {cvData.projects.map((proj, i) => (
+          {[...cvData.projects].reverse().map((proj, i) => (
             <div key={i} className="bg-white/5 rounded-xl p-6">
               <h3 className="text-lg font-semibold mb-2">{proj.title}</h3>
               <ul className="text-gray-300 text-sm mb-2 list-disc ml-5">
@@ -132,11 +170,11 @@ function ProjectsSection() {
 
 function CertificationsSection() {
   return (
-    <section className="py-20 snap-start">
+    <section id="certifications" className="py-20 snap-start">
       <div className="container mx-auto px-4">
         <SectionTitle>Certifications, Courses & Workshops</SectionTitle>
         <ul className="flex flex-wrap gap-2 max-w-4xl mx-auto justify-center">
-          {cvData.certifications.map((cert, i) => (
+          {[...cvData.certifications].reverse().map((cert, i) => (
             <li key={i} className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-sm mb-2">{cert.name}</li>
           ))}
         </ul>
@@ -147,11 +185,11 @@ function CertificationsSection() {
 
 function ClubsSection() {
   return (
-    <section className="py-20 snap-start">
+    <section id="clubs" className="py-20 snap-start">
       <div className="container mx-auto px-4">
         <SectionTitle>Clubs & Leadership</SectionTitle>
         <div className="flex flex-wrap gap-4 justify-center">
-          {cvData.clubs.map((club, i) => (
+          {[...cvData.clubs].reverse().map((club, i) => (
             <div key={i} className="bg-white/5 rounded-xl p-4 min-w-[220px]">
               <h4 className="font-semibold text-lg mb-1">{club.name}</h4>
               <div className="text-gray-300 text-sm mb-1">{club.role}</div>
@@ -176,9 +214,10 @@ function App() {
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-teal-400 animate-fade-in">
               Akhil Devarasetty
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-8 animate-fade-in animate-delay-200">
-              Computer Science and Engineering Student
-            </p>
+                <p className="text-xl md:text-2xl text-gray-300 mb-8 animate-fade-in animate-delay-200">
+                  Computer Science and Engineering Student
+                </p>
+                <Navbar />
             <div className="flex justify-center gap-6 animate-fade-in animate-delay-300">
               <a href="https://github.com/DDH2004" className="text-gray-300 hover:text-white transition-colors hover:scale-110 transform duration-200">
                 <Github size={24} />
@@ -212,10 +251,10 @@ function App() {
   {/* Clubs Section */}
   <ClubsSection />
 
-      {/* Blog Section */}
-      <div className="snap-start">
-        <BlogSection />
-      </div>
+         {/* Blog Section */}
+         <div className="snap-start">
+           <BlogSection />
+         </div>
 
       {/* Contact Section */}
       <section className="min-h-screen py-20 snap-start">

@@ -10,9 +10,16 @@ export interface EducationEntry {
   relevantCourses?: string[];
 }
 
-export interface SkillSection {
-  hard: string[];
-  soft: string[];
+export interface TechnicalSkills {
+  programmingLanguages: string[];
+  frameworksLibraries: string[];
+  dataScienceAnalytics: string[];
+  cloudDevOps: string[];
+  cybersecurity: string[];
+  databases: string[];
+  blockchainWeb3: string[];
+  roboticsIoT: string[];
+  aiGenerativeAI: string[];
 }
 
 export interface ExperienceEntry {
@@ -41,7 +48,7 @@ export interface ClubEntry {
 
 export interface CVData {
   education: EducationEntry[];
-  skills: SkillSection;
+  skills: TechnicalSkills;
   experience: ExperienceEntry[];
   projects: ProjectEntry[];
   certifications: CertificationEntry[];
@@ -63,14 +70,32 @@ const cvData: CVData = {
     }
   ],
   skills: {
-    hard: [
-      "C++", "Python", "R", "Matlab",
-      "Tensorflow", "Numba", "Numpy", "Pandas", "Seaborn", "Matplotlib", "Quarto",
-      "HPC", "3D printers", "Machining Equipment",
-      "Gephi", "Microsoft Power BI", "Office 365", "Google Suite", "ArcGIS"
+    programmingLanguages: [
+      "C++", "Python", "R", "Matlab", "PHP", "JavaScript (Node.js, React, TypeScript)", "SQL"
     ],
-    soft: [
-      "Collaboration", "Decision Making", "Insights"
+    frameworksLibraries: [
+      "TensorFlow", "OpenCV", "Numpy", "Pandas", "Seaborn", "Matplotlib", "Scipy", "Numba", "Flask", "Django", "Node.js", "React", "Tailwind CSS", "Material UI", "Quarto", "Roboflow", "LangChain", "FAISS", "Gradio"
+    ],
+    dataScienceAnalytics: [
+      "Data Cleaning & Pipelines", "Statistical Analysis (Correlation, Clustering, Optimization)", "Business Intelligence (Power BI, Excel)", "Graph Analytics (Gephi, Neo4j)", "Visualization (Matplotlib, Seaborn, Plotly.js, Quarto, R)"
+    ],
+    cloudDevOps: [
+      "AWS (Elastic Beanstalk)", "Google Cloud (GenAI, BI, Project Management)", "Kubernetes (K8s)", "GitHub Actions", "Google Colab", "MCP Servers"
+    ],
+    cybersecurity: [
+      "Wireshark", "Network Monitoring (Traceroute, Ping, Log Monitoring)", "Smart Contract Auditing (CertiK, Hacken, Rekt)", "PHPStan (Static Code Analysis)", "Hashcat", "Codepath Cybersecurity"
+    ],
+    databases: [
+      "MongoDB", "SQL (Database Implementation & Optimization)", "Neo4j (Graph Database)"
+    ],
+    blockchainWeb3: [
+      "Smart Contract Security", "Solana Blockchain", "Web3 Security Analysis", "Token Reward Systems"
+    ],
+    roboticsIoT: [
+      "IoT Sensor Systems", "KINOVA Cortex Robotic Arm Programming", "Agricultural Automation", "Communication Technologies", "3D Printers", "Machining Equipment"
+    ],
+    aiGenerativeAI: [
+      "LangChain", "Gemini", "Retrieval-Augmented Generation (RAG)", "Gradio", "Agent Development", "Astroquery API", "REST APIs"
     ]
   },
   experience: [
