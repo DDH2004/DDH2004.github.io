@@ -149,7 +149,7 @@ const cvData: CVData = {
     {
       title: "Summer Internship",
       organization: "Zscaler",
-      date: "July - Aug 2023",
+      date: "July 2023 - Aug 2023",
       description: [
         "Rotational summer internship program, participated in NOC, Analyst, Product Management, and Monitoring teams.",
         "Product Management: Automation development for remote monitoring and notification, requirements gathering, feature prioritization, user journey mapping.",
