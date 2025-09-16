@@ -111,13 +111,38 @@ function SkillsSection() {
   );
 }
 
+function parseDate(dateStr: string): number {
+  // Try to extract the most recent year and month from the date string
+  // Handles formats like "Jun 25 - Aug 25", "Nov 24 - May 25", "2024-2025", "July - Aug 2023"
+  // Returns a comparable number: YYYYMM
+  if (!dateStr) return 0;
+  // Find all years (2 or 4 digits)
+  const yearMatches = dateStr.match(/\d{4}|\d{2}/g);
+  let year = 0;
+  if (yearMatches) {
+    // Use the last year found (most recent)
+    year = parseInt(yearMatches[yearMatches.length - 1]);
+    if (year < 100) year += 2000; // Assume 21st century for 2-digit years
+  }
+  // Find all months (short or long names)
+  const monthNames = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+  let month = 1;
+  const monthMatch = dateStr.toLowerCase().match(/jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec/);
+  if (monthMatch) {
+    month = monthNames.indexOf(monthMatch[0]) + 1;
+  }
+  return year * 100 + month;
+}
+
 function ExperienceSection() {
+  // Sort by parsed date descending (most recent first)
+  const sorted = [...cvData.experience].sort((a, b) => parseDate(b.date) - parseDate(a.date));
   return (
     <section id="experience" className="min-h-screen py-20 snap-start">
       <div className="container mx-auto px-4">
         <SectionTitle>Experience</SectionTitle>
         <div className="space-y-8 max-w-3xl mx-auto">
-          {[...cvData.experience].reverse().map((exp, i) => (
+          {sorted.map((exp, i) => (
             <div key={i} className="bg-white/5 rounded-xl p-6">
               <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
                 <div>
