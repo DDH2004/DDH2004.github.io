@@ -282,10 +282,10 @@ const cvData: CVData = {
     { name: "Goldman Sachs Software Engineering Virtual Experience Program on Forage - January 2025" }
   ],
   clubs: [
-    { name: "HackMerced", role: "Coordinator and Director", date: "August 2023 - Present" },
-    { name: "Association for Computing Machinery", role: "Secretary", date: "March 2023 - Present" },
-    { name: "BobCAD", role: "Board Member, Ex-VP, and Treasurer", date: "August 2023 - Present" },
-    { name: "NSF Innovation Corps", role: "Teal Lead", date: "August 2023 - Present" }
+    { name: "HackMerced", role: "Coordinator and Director", date: "August 2023 - May 2025" },
+    { name: "Association for Computing Machinery", role: "Secretary", date: "March 2023 - May 2025" },
+    { name: "BobCAD", role: "Board Member, Ex-VP, and Treasurer", date: "August 2023 - May 2025" },
+    { name: "NSF Innovation Corps", role: "Teal Lead", date: "August 2023 - May 2025" }
   ]
 };
 
