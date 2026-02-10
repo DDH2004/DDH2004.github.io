@@ -2,10 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Animations ── */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -14,51 +15,33 @@
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
-}
-
-.animate-delay-100 {
-  animation-delay: 100ms;
-}
-
-.animate-delay-200 {
-  animation-delay: 200ms;
-}
-
-.animate-delay-300 {
-  animation-delay: 300ms;
-}
-
-/* Scroll Animations */
-.hidden-element {
   opacity: 0;
-  filter: blur(5px);
-  transform: translateY(100px);
-  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeIn 0.6s ease-out forwards;
+}
+.animate-delay-100 {
+  animation-delay: 80ms;
+}
+.animate-delay-200 {
+  animation-delay: 160ms;
+}
+.animate-delay-300 {
+  animation-delay: 240ms;
 }
 
-.show {
-  opacity: 1;
-  filter: blur(0);
-  transform: translateY(0);
-}
-
-/* Parallax Effect */
-.parallax {
-  transform: translateZ(-1px) scale(2);
-  z-index: -1;
-}
-
+/* ── Base ── */
 html {
   scroll-behavior: smooth;
-  --color-primary: #cb0247;
-  --color-dark: #01031e;
-  --color-accent: #81a9ae;
-  --color-secondary: #126c8e;
-  --color-blackish: #000520;
 }
 
 body {
-  background: linear-gradient(180deg, var(--color-dark) 0%, var(--color-blackish) 100%);
-  color: var(--color-accent);
+  background-color: #0a0a0f;
+  color: #a1a1aa;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Selection ── */
+::selection {
+  background-color: rgba(129, 169, 174, 0.2);
+  color: #fff;
 }

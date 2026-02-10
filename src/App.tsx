@@ -1,304 +1,169 @@
-import React, { useState } from 'react';
-import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
-
-import { BlogSection } from './components/BlogSection';
-
-import { WebGLBackground } from './components/WebGLBackground';
-import cvData from './data/cv';
-
-// Simple responsive navbar
-function Navbar() {
-  const navItems = [
-    { label: 'Education', href: '#education' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Certifications', href: '#certifications' },
-    { label: 'Clubs', href: '#clubs' },
-    { label: 'Contact', href: '#contact' },
-  ];
-  return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-black/70 backdrop-blur border-b border-white/10">
-      <div className="container mx-auto px-4 flex justify-between items-center h-16">
-        <span className="font-bold text-lg text-white tracking-wide">My Portfolio</span>
-        <ul className="flex gap-4">
-          {navItems.map((item) => (
-            <li key={item.href}>
-          <a href={item.href} className="text-accent hover:text-primary transition-colors px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-primary">
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </nav>
-  );
-}
-
-// Utility components for rendering sections
-function SectionTitle({ children }: { children: React.ReactNode }) {
-  return <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">{children}</h2>;
-}
-
-function EducationSection() {
-  return (
-    <section id="education" className="min-h-screen py-20 snap-start">
-      <div className="container mx-auto px-4">
-        <SectionTitle>Education</SectionTitle>
-        <div className="space-y-8 max-w-3xl mx-auto">
-          {[...cvData.education].reverse().map((edu, i) => (
-            <div key={i} className="bg-white/5 rounded-xl p-6">
-              <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
-                <div>
-                  <h3 className="text-xl font-semibold">{edu.degree}</h3>
-                  <p className="text-gray-300">{edu.institution}</p>
-                </div>
-                <span className="text-gray-400 text-sm mt-2 md:mt-0">{edu.date}</span>
-              </div>
-              {edu.honors && edu.honors.length > 0 && (
-                <ul className="text-gray-400 text-sm mb-2 list-disc ml-5">
-                  {edu.honors.map((h, j) => <li key={j}>{h}</li>)}
-                </ul>
-              )}
-              {edu.relevantCourses && edu.relevantCourses.length > 0 && (
-                <div className="text-gray-300 text-sm">
-                  <span className="font-semibold">Relevant Courses:</span> {edu.relevantCourses.join(', ')}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-import type { TechnicalSkills } from './data/cv';
-
-function SkillsSection() {
-  const skills = cvData.skills;
-  const skillCategories: { key: keyof TechnicalSkills; label: string; color: string }[] = [
-    { key: 'programmingLanguages', label: 'Programming Languages', color: 'bg-blue-500/20 text-blue-300' },
-    { key: 'frameworksLibraries', label: 'Frameworks & Libraries', color: 'bg-green-500/20 text-green-300' },
-    { key: 'dataScienceAnalytics', label: 'Data Science & Analytics', color: 'bg-cyan-500/20 text-cyan-300' },
-    { key: 'cloudDevOps', label: 'Cloud & DevOps', color: 'bg-purple-500/20 text-purple-300' },
-    { key: 'cybersecurity', label: 'Cybersecurity', color: 'bg-red-500/20 text-red-300' },
-    { key: 'databases', label: 'Databases', color: 'bg-pink-500/20 text-pink-300' },
-    { key: 'blockchainWeb3', label: 'Blockchain & Web3', color: 'bg-yellow-500/20 text-yellow-700' },
-    { key: 'roboticsIoT', label: 'Robotics & IoT', color: 'bg-teal-500/20 text-teal-300' },
-    { key: 'aiGenerativeAI', label: 'AI & Generative AI', color: 'bg-indigo-500/20 text-indigo-300' },
-  ];
-  return (
-  <section id="skills" className="min-h-screen py-20 snap-start">
-      <div className="container mx-auto px-4">
-        <SectionTitle>Technical Skills</SectionTitle>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {skillCategories.map(({ key, label, color }) => (
-            skills[key] && skills[key].length > 0 && (
-              <div key={key} className="bg-white/5 rounded-xl p-6">
-                <h3 className="text-xl font-semibold mb-2">{label}</h3>
-                <ul className="flex flex-wrap gap-2">
-                  {skills[key].map((skill, i) => (
-                    <li key={i} className={`px-3 py-1 rounded-full ${color} text-sm`}>{skill}</li>
-                  ))}
-                </ul>
-              </div>
-            )
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function parseDate(dateStr: string): number {
-  // Try to extract the most recent year and month from the date string
-  // Handles formats like "Jun 25 - Aug 25", "Nov 24 - May 25", "2024-2025", "July - Aug 2023"
-  // Returns a comparable number: YYYYMM
-  if (!dateStr) return 0;
-  // Find all years (2 or 4 digits)
-  const yearMatches = dateStr.match(/\d{4}|\d{2}/g);
-  let year = 0;
-  if (yearMatches) {
-    // Use the last year found (most recent)
-    year = parseInt(yearMatches[yearMatches.length - 1]);
-    if (year < 100) year += 2000; // Assume 21st century for 2-digit years
-  }
-  // Find all months (short or long names)
-  const monthNames = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
-  let month = 1;
-  const monthMatch = dateStr.toLowerCase().match(/jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec/);
-  if (monthMatch) {
-    month = monthNames.indexOf(monthMatch[0]) + 1;
-  }
-  return year * 100 + month;
-}
-
-function ExperienceSection() {
-  // Sort by parsed date descending (most recent first)
-  const sorted = [...cvData.experience].sort((a, b) => parseDate(b.date) - parseDate(a.date));
-  return (
-    <section id="experience" className="min-h-screen py-20 snap-start">
-      <div className="container mx-auto px-4">
-        <SectionTitle>Experience</SectionTitle>
-        <div className="space-y-8 max-w-3xl mx-auto">
-          {sorted.map((exp, i) => (
-            <div key={i} className="bg-white/5 rounded-xl p-6">
-              <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
-                <div>
-                  <h3 className="text-lg font-semibold">{exp.title}</h3>
-                  <p className="text-gray-300">{exp.organization}</p>
-                </div>
-                <span className="text-gray-400 text-sm mt-2 md:mt-0">{exp.date}</span>
-              </div>
-              {exp.description.length > 0 && (
-                <ul className="text-gray-400 text-sm list-disc ml-5">
-                  {exp.description.map((d, j) => <li key={j}>{d}</li>)}
-                </ul>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ProjectsSection() {
-  return (
-    <section id="projects" className="min-h-screen py-20 snap-start">
-      <div className="container mx-auto px-4">
-        <SectionTitle>Projects</SectionTitle>
-        <div className="space-y-8 max-w-3xl mx-auto">
-          {[...cvData.projects].reverse().map((proj, i) => (
-            <div key={i} className="bg-white/5 rounded-xl p-6">
-              <h3 className="text-lg font-semibold mb-2">{proj.title}</h3>
-              <ul className="text-gray-300 text-sm mb-2 list-disc ml-5">
-                {proj.description.map((desc, j) => <li key={j}>{desc}</li>)}
-              </ul>
-              {proj.links && proj.links.length > 0 && (
-                <div className="flex flex-wrap gap-3 mt-2">
-                  {proj.links.map((l, k) => (
-                    <a key={k} href={l.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300 transition-colors underline">
-                      {l.label} <ExternalLink size={14} />
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CertificationsSection() {
-  return (
-    <section id="certifications" className="py-20 snap-start">
-      <div className="container mx-auto px-4">
-        <SectionTitle>Certifications, Courses & Workshops</SectionTitle>
-        <ul className="flex flex-wrap gap-2 max-w-4xl mx-auto justify-center">
-          {[...cvData.certifications].reverse().map((cert, i) => (
-            <li key={i} className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-sm mb-2">{cert.name}</li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  );
-}
-
-function ClubsSection() {
-  return (
-    <section id="clubs" className="py-20 snap-start">
-      <div className="container mx-auto px-4">
-        <SectionTitle>Clubs & Leadership</SectionTitle>
-        <div className="flex flex-wrap gap-4 justify-center">
-          {[...cvData.clubs].reverse().map((club, i) => (
-            <div key={i} className="bg-white/5 rounded-xl p-4 min-w-[220px]">
-              <h4 className="font-semibold text-lg mb-1">{club.name}</h4>
-              <div className="text-gray-300 text-sm mb-1">{club.role}</div>
-              <div className="text-gray-400 text-xs">{club.date}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+import { Github, FileText, ExternalLink, ArrowUpRight } from "lucide-react";
+import { Navbar } from "./components/Navbar";
+import cvData from "./data/cv";
 
 function App() {
   return (
-  <div className="min-h-screen bg-gradient-to-b from-dark via-blackish to-blackish text-accent snap-y snap-mandatory overflow-y-scroll h-screen">
-      <WebGLBackground />
-      
-      {/* Hero Section */}
-      <header className="min-h-screen flex items-center justify-center relative overflow-hidden snap-start">
-        <div className="container mx-auto px-4 py-16 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary animate-fade-in">
-              Akhil Devarasetty
-            </h1>
-                <p className="text-xl md:text-2xl text-accent mb-8 animate-fade-in animate-delay-200">
-                  Computer Science and Engineering Student
-                </p>
-                <Navbar />
-            <div className="flex justify-center gap-6 animate-fade-in animate-delay-300">
-              <a href="https://github.com/DDH2004" className="text-accent hover:text-primary transition-colors hover:scale-110 transform duration-200">
-                <Github size={24} />
-              </a>
-              <a href="https://www.linkedin.com/in/akhil-devarasetty-073a72244/" className="text-accent hover:text-primary transition-colors hover:scale-110 transform duration-200">
-                <Linkedin size={24} />
-              </a>
-              <a href="mailto:akhild2004@gmail.com" className="text-accent hover:text-primary transition-colors hover:scale-110 transform duration-200">
-                <Mail size={24} />
-              </a>
-            </div>
+    <div className="min-h-screen bg-dark text-gray-300">
+      <Navbar resumePath={cvData.resumePath} />
+
+      {/* ── Hero ── */}
+      <header className="pt-32 pb-24 px-6">
+        <div className="max-w-[1100px] mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 animate-fade-in">
+            {cvData.name}
+          </h1>
+          <p className="text-lg md:text-xl text-accent font-medium mb-4 animate-fade-in animate-delay-100">
+            {cvData.role}
+          </p>
+          <p className="text-base text-gray-400 max-w-xl mb-8 animate-fade-in animate-delay-200">
+            {cvData.summary}
+          </p>
+          <div className="flex gap-3 animate-fade-in animate-delay-300">
+            <a
+              href={cvData.resumePath}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/[0.06] hover:bg-white/[0.10] border border-white/[0.08] rounded-md text-sm text-white transition-colors"
+            >
+              <FileText size={15} />
+              Resume
+            </a>
+            <a
+              href={cvData.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/[0.06] hover:bg-white/[0.10] border border-white/[0.08] rounded-md text-sm text-white transition-colors"
+            >
+              <Github size={15} />
+              GitHub
+            </a>
           </div>
         </div>
       </header>
 
-  {/* Education Section */}
-  <EducationSection />
-
-  {/* Skills Section */}
-  <SkillsSection />
-
-  {/* Experience Section */}
-  <ExperienceSection />
-
-  {/* Projects Section */}
-  <ProjectsSection />
-
-  {/* Certifications Section */}
-  <CertificationsSection />
-
-  {/* Clubs Section */}
-  <ClubsSection />
-
-         {/* Blog Section */}
-         <div className="snap-start">
-           <BlogSection />
-         </div>
-
-      {/* Contact Section */}
-      <section className="min-h-screen py-20 snap-start">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">Get In Touch</h2>
-          <p className="text-xl text-gray-300 mb-8">
-            I'm currently looking for early career opportunities. Let's connect!
-          </p>
-          <a
-            href="mailto:akhild2004@gmail.com"
-            className="inline-block px-8 py-3 bg-gradient-to-r from-primary to-secondary rounded-lg text-lg font-semibold hover:opacity-90 transition-all duration-300 hover:scale-105 transform"
-          >
-            Say Hello
-          </a>
+      {/* ── Projects ── */}
+      <section id="projects" className="py-24 px-6">
+        <div className="max-w-[1100px] mx-auto">
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-10">
+            Projects
+          </h2>
+          <div className="space-y-16">
+            {cvData.projects.map((proj, i) => (
+              <article key={i} className="group">
+                <div className="flex flex-col sm:flex-row sm:items-baseline sm:gap-3 mb-2">
+                  <h3 className="text-xl font-semibold text-white">
+                    {proj.title}
+                  </h3>
+                  <span className="text-sm text-gray-500">{proj.context}</span>
+                </div>
+                <p className="text-gray-400 mb-4 max-w-2xl">{proj.summary}</p>
+                <ul className="space-y-1.5 mb-4">
+                  {proj.built.map((line, j) => (
+                    <li
+                      key={j}
+                      className="text-sm text-gray-400 pl-4 relative before:content-['–'] before:absolute before:left-0 before:text-gray-600"
+                    >
+                      {line}
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex flex-wrap items-center gap-2">
+                  {proj.stack.map((tech, k) => (
+                    <span
+                      key={k}
+                      className="text-xs px-2.5 py-1 rounded bg-white/[0.04] text-gray-500 border border-white/[0.06]"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                  {proj.links &&
+                    proj.links.length > 0 &&
+                    proj.links.map((link, l) => (
+                      <a
+                        key={l}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs text-accent hover:text-white transition-colors ml-2"
+                      >
+                        {link.label}
+                        <ArrowUpRight size={12} />
+                      </a>
+                    ))}
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      <footer className="py-8 text-center text-gray-400">
-        <p>© 2025 Akhil Devarasetty. All rights reserved.</p>
+      {/* ── Skills ── */}
+      <section id="skills" className="py-24 px-6">
+        <div className="max-w-[1100px] mx-auto">
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-10">
+            Skills
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+            {cvData.skills.map((group, i) => (
+              <div key={i}>
+                <h3 className="text-sm font-semibold text-white mb-3">
+                  {group.label}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {group.items.map((skill, j) => (
+                    <span
+                      key={j}
+                      className="text-xs px-2.5 py-1 rounded bg-white/[0.04] text-gray-400 border border-white/[0.06]"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── About ── */}
+      <section id="about" className="py-24 px-6">
+        <div className="max-w-[1100px] mx-auto">
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-10">
+            About
+          </h2>
+          <div className="max-w-2xl space-y-4">
+            {cvData.about.map((paragraph, i) => (
+              <p key={i} className="text-gray-400 leading-relaxed">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+          <div className="flex gap-6 mt-8 text-sm">
+            <a
+              href={`mailto:${cvData.email}`}
+              className="text-accent hover:text-white transition-colors"
+            >
+              {cvData.email}
+            </a>
+            <a
+              href={cvData.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-accent hover:text-white transition-colors"
+            >
+              LinkedIn
+              <ExternalLink size={13} />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Footer ── */}
+      <footer className="py-10 px-6 border-t border-white/[0.04]">
+        <div className="max-w-[1100px] mx-auto text-xs text-gray-600">
+          © {new Date().getFullYear()} {cvData.name}
+        </div>
       </footer>
     </div>
   );

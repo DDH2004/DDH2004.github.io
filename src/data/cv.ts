@@ -1,317 +1,151 @@
 // src/data/cv.ts
-// This file contains structured CV data for easy maintenance and future extensibility.
-// Add new sections or entries as needed.
-
-export interface EducationEntry {
-  degree: string;
-  institution: string;
-  date: string;
-  honors?: string[];
-  relevantCourses?: string[];
-}
-
-export interface TechnicalSkills {
-  programmingLanguages: string[];
-  frameworksLibraries: string[];
-  dataScienceAnalytics: string[];
-  cloudDevOps: string[];
-  cybersecurity: string[];
-  databases: string[];
-  blockchainWeb3: string[];
-  roboticsIoT: string[];
-  aiGenerativeAI: string[];
-}
-
-export interface ExperienceEntry {
-  title: string;
-  organization: string;
-  date: string;
-  description: string[];
-}
 
 export interface ProjectEntry {
   title: string;
-  description: string[];
+  context: string;
+  summary: string;
+  built: string[];
+  stack: string[];
   links?: { label: string; url: string }[];
 }
 
-export interface CertificationEntry {
-  name: string;
-  details?: string;
-}
-
-export interface ClubEntry {
-  name: string;
-  role: string;
-  date: string;
+export interface SkillGroup {
+  label: string;
+  items: string[];
 }
 
 export interface CVData {
-  education: EducationEntry[];
-  skills: TechnicalSkills;
-  experience: ExperienceEntry[];
+  name: string;
+  role: string;
+  summary: string;
+  github: string;
+  linkedin: string;
+  email: string;
+  resumePath: string;
   projects: ProjectEntry[];
-  certifications: CertificationEntry[];
-  clubs: ClubEntry[];
+  skills: SkillGroup[];
+  about: string[];
 }
 
 const cvData: CVData = {
-  education: [
-    {
-      degree: "Bachelor of Science in Computer Science and Engineering",
-      institution: "University of California, Merced",
-      date: "Aug 22 - May 25",
-      honors: [
-        "Chancellor’s Honor List for 2022/2023 and 2024/2024 Academic School Year"
-      ],
-      relevantCourses: [
-        "Computer Vision", "Software Engineering", "Database System Implementation", "Databases", "Object-Oriented Programming", "Numerical Methods", "Linear Analysis", "Spatial Analysis and Modeling", "Data Analysis and Optimization", "Vector Calculus", "Statistics"
-      ]
-    }
-  ],
-  skills: {
-    programmingLanguages: [
-      "C++", "Python", "R", "Matlab", "PHP", "JavaScript (Node.js, React, TypeScript)", "SQL"
-    ],
-    frameworksLibraries: [
-      "TensorFlow", "OpenCV", "Numpy", "Pandas", "Seaborn", "Matplotlib", "Scipy", "Numba", "Flask", "Django", "Node.js", "React", "Tailwind CSS", "Material UI", "Quarto", "Roboflow", "LangChain", "FAISS", "Gradio"
-    ],
-    dataScienceAnalytics: [
-      "Data Cleaning & Pipelines", "Statistical Analysis (Correlation, Clustering, Optimization)", "Business Intelligence (Power BI, Excel)", "Graph Analytics (Gephi, Neo4j)", "Visualization (Matplotlib, Seaborn, Plotly.js, Quarto, R)"
-    ],
-    cloudDevOps: [
-      "AWS (Elastic Beanstalk)", "Google Cloud (GenAI, BI, Project Management)", "Kubernetes (K8s)", "GitHub Actions", "Google Colab", "MCP Servers"
-    ],
-    cybersecurity: [
-      "Wireshark", "Network Monitoring (Traceroute, Ping, Log Monitoring)", "Smart Contract Auditing (CertiK, Hacken, Rekt)", "PHPStan (Static Code Analysis)", "Hashcat", "Codepath Cybersecurity"
-    ],
-    databases: [
-      "MongoDB", "SQL (Database Implementation & Optimization)", "Neo4j (Graph Database)"
-    ],
-    blockchainWeb3: [
-      "Smart Contract Security", "Solana Blockchain", "Web3 Security Analysis", "Token Reward Systems"
-    ],
-    roboticsIoT: [
-      "IoT Sensor Systems", "KINOVA Cortex Robotic Arm Programming", "Agricultural Automation", "Communication Technologies", "3D Printers", "Machining Equipment"
-    ],
-    aiGenerativeAI: [
-      "LangChain", "Gemini", "Retrieval-Augmented Generation (RAG)", "Gradio", "Agent Development", "Astroquery API", "REST APIs"
-    ]
-  },
-  experience: [
-    {
-      title: "MSIIP Intern",
-      organization: "National Nuclear Security Administration",
-      date: "Jun 25 - Aug 25",
-      description: [
-        "Supported Lawrence Livermore National Laboratory in environmental safety and health"
-      ]
-    },
-    {
-      title: "Undergraduate Student Research Assistant",
-      organization: "IoT4Ag",
-      date: "Mar 25 - May 25",
-      description: [
-        "Evaluate and test spatiotemporal fusion algorithms to determine optimal approaches for agricultural data integration",
-        "Analyze the performance of different fusion techniques on multi-source sensor data",
-        "Assist in the design and testing of sensor systems and communication technologies for precision agriculture",
-        "Conduct literature reviews on state-of-the-art fusion methods and contribute to research discussions",
-        "Participate in team meetings, trainings, and webinars focused on IoT and agricultural innovation"
-      ]
-    },
-    {
-      title: "Student Success Intern",
-      organization: "University of California, Merced",
-      date: "Nov 24 - May 25",
-      description: [
-        "Engineered a Python-based data pipeline for cleaning, deduplication, and analysis of student transactions.",
-        "Developed custom data cleaning algorithms, improving dataset quality and reducing noise.",
-        "Built an automated duplicate transaction detection system, reducing redundancy by 10%.",
-        "Implemented dynamic visualizations using matplotlib/seaborn, enabling actionable insights into student behaviors.",
-        "Designed an alternative execution environment (Google Colab) for non-technical users.",
-        "Optimized data handling efficiency, improving processing time by 30%"
-      ]
-    },
-    {
-      title: "Learning Assistance for Calculus II and Precalculus",
-      organization: "UC Merced",
-      date: "Jan 2023 - Dec 2024",
-      description: []
-    },
-    {
-      title: "SWE Micro-Intern (CTI/Codeday)",
-      organization: "Utopia-PHP",
-      date: "Nov 24 - Dec 24",
-      description: [
-        "Made a pull request for issue #47 to implement static code analysis with PHPStan and automate analysis using Github actions."
-      ]
-    },
-    {
-      title: "Summer Internship",
-      organization: "Zscaler",
-      date: "July 2023 - Aug 2023",
-      description: [
-        "Rotational summer internship program, participated in NOC, Analyst, Product Management, and Monitoring teams.",
-        "Product Management: Automation development for remote monitoring and notification, requirements gathering, feature prioritization, user journey mapping.",
-        "Monitoring: Developed Python automation scripts (Paramiko) for server health, created automated notifications, network monitoring with Wireshark, traceroute, ping, log monitoring."
-      ]
-    },
-    {
-      title: "Externship",
-      organization: "Extern.com / Webacy",
-      date: "2024-2025",
-      description: [
-        "Blockchain and Web3 Security Research: Competitive analysis of Webacy and its products, SWOT analysis, internal sales training.",
-        "Web3 Security Data Analytics: Gathered and validated data on smart contract vulnerabilities, formatted and analyzed data using Python."
-      ]
-    }
-  ],
+  name: "Akhil Devarasetty",
+  role: "Software Engineer · Backend / Systems / ML",
+  summary:
+    "I build distributed ML systems and backend infrastructure — from model serving pipelines to real-time inference APIs.",
+  github: "https://github.com/DDH2004",
+  linkedin: "https://www.linkedin.com/in/akhil-devarasetty-073a72244/",
+  email: "akhild2004@gmail.com",
+  resumePath: "/resume.pdf",
+
   projects: [
     {
-      title: "Wordle game in C++",
-      description: [
-        "Developed a Wordle game in C++ for 5, 6, and 7-letter words as part of CSE 024.",
-        "Implemented input validation, feedback system, UI for guesses and keyboard, memory optimization, and test automation."
-      ]
-    },
-    {
-      title: "Tic Tac Toe AI in C++",
-      description: [
-        "Created an AI program using Alpha-beta pruning for any board size, optimized board visibility, considered multithreading for large boards, and dynamic adaptation based on host specs."
-      ]
-    },
-    {
-      title: "S&P 500 Analysis with Quarto and R",
-      description: [
-        "Analyzed the impact of earnings on stock value, used Quarto for documentation, performed Pearson correlation on financial metrics."
-      ]
-    },
-    {
-      title: "Smart Contract Audit Cluster Analysis",
-      description: [
-        "Reviewed Web3 smart contracts, compiled vulnerability database, performed frequency, correlation, and clustering analysis using Python."
-      ]
-    },
-    {
-      title: "Airline Graphical Analysis for Google exploreCSR",
-      description: [
-        "Performed graphical analysis on airline data using Excel and Gephi, ranked routes, analyzed airport connectivity for virus spread modeling."
+      title: "ExoIdent",
+      context: "NASA Space Apps Challenge",
+      summary:
+        "Multimodal ML system for exoplanet detection from Kepler/TESS observation data, serving real-time predictions through a distributed backend.",
+      built: [
+        "Designed multimodal model fusion strategy combining CNN time-series models with tabular feature classifiers",
+        "Implemented distributed inference pipeline with Celery + Redis task queues, achieving ~1,000 predictions/sec at sub-100ms latency",
+        "Built FastAPI backend with WebSocket-based real-time updates for a Next.js dashboard",
       ],
-      links: [
-        { label: "GitHub", url: "https://github.com/DDH2004/Global-Air-Transportation-Network-Graph-Analytics" }
-      ]
-    },
-    {
-      title: "NASA SpaceApps 2023",
-      description: [
-        "Built a web portal with animation to demonstrate solar eclipse mechanics, created trivia and resource links."
+      stack: [
+        "Python",
+        "FastAPI",
+        "Celery",
+        "Redis",
+        "TensorFlow",
+        "Next.js",
+        "Docker Compose",
       ],
-      links: [
-        { label: "Repo", url: "https://github.com/DDH2004/eclipse-NASA-challenge-2023" },
-        { label: "Submission", url: "https://eclipse-nasa-challenge-2023.vercel.app/" }
-      ]
+      links: [],
     },
     {
-      title: "HTP!m 2023",
-      description: [
-        "Created a platform for hacking challenges using Kubernetes on Vercel, managed K8s clusters, designed social engineering and technical challenges."
-      ]
-    },
-    {
-      title: "NASA SpaceApps 2024",
-      description: [
-        "Built an app to visualize stars from different planets, integrated Aladdin Viewer Lite and astroquery API, plotted data with react-plotly.js."
+      title: "Golden Gate Quest",
+      context: "NVIDIA Spark Hack Series",
+      summary:
+        "GPU-accelerated RAG platform powering a real-time scavenger hunt with personalized guidance from multimodal inputs.",
+      built: [
+        "Designed and implemented the RAG backend with NeMo embeddings and GPU-accelerated vector similarity search",
+        "Built session-aware FastAPI service connecting ML inference to real-time voice guidance and image comparison",
+        "Integrated Supabase (PostgreSQL) persistence layer with React/TypeScript frontend",
       ],
-      links: [
-        { label: "Repo", url: "https://github.com/Shyam-723/NasaExoSkyChallenge" },
-        { label: "Challenge", url: "https://www.spaceappschallenge.org/nasa-space-apps-2024/challenges/exosky/" }
-      ]
-    },
-    {
-      title: "SacHacks VI",
-      description: [
-        "Developed a gamified stock market simulator with Vite/React frontend and Flask backend, used Axios for data handling."
+      stack: [
+        "Python",
+        "FastAPI",
+        "NeMo",
+        "CUDA",
+        "Supabase",
+        "React",
+        "TypeScript",
       ],
-      links: [
-        { label: "Repo", url: "https://github.com/DDH2004/SacHacksVI_TheCowsOverYonder" }
-      ]
+      links: [],
     },
     {
-      title: "SASEHacks@UCM 2025",
-      description: [
-        "Designed a full-stack app for recycling incentives using blockchain, built UI with React/TypeScript/Tailwind, integrated Solana, Flask, MongoDB, and Three.js."
+      title: "BART Aerial Track Inspection",
+      context: "Computer Vision for Infrastructure Monitoring",
+      summary:
+        "Automated CV system that detects rail defects from aerial video, localizes issues via OCR mile markers, and generates structured maintenance reports.",
+      built: [
+        "Implemented end-to-end CV pipeline: frame extraction, object detection for obstructions/defects, OCR-based localization",
+        "Built Django application with automated PDF report generation for downstream maintenance teams",
+        "Transformed raw video data into structured, actionable inspection outputs",
       ],
-      links: [
-        { label: "Devpost", url: "https://devpost.com/software/greenproof" },
-        { label: "Repo", url: "https://github.com/DDH2004/SASEHacks-UCM2025_The-dApperBoys" }
-      ]
+      stack: ["Python", "OpenCV", "TensorFlow", "Django"],
+      links: [],
     },
-    {
-      title: "IoT4Ag UC Merced Hackathon",
-      description: [
-        "Programmed KINOVA Cortex robotic arm for agricultural automation using Python and OpenCV, implemented object detection for selective leaf picking."
-      ],
-      links: [
-        { label: "Repo", url: "https://github.com/ezsinehan/kinova-arm-challenge" }
-      ]
-    },
-    {
-      title: "AI Dungeon Master Assistant",
-      description: [
-        "Built a generative AI assistant for D&D using LangChain, Gemini, FAISS, Gradio, and RAG, published blog and video demo."
-      ],
-      links: [
-        { label: "Repo", url: "https://github.com/DDH2004/Gen-AI-Intensive-Course-Capstone-2025Q1" }
-      ]
-    },
-    {
-      title: "Spot-It Object Detection and Matching System",
-      description: [
-        "Built a computer vision pipeline for Spot-It! game cards using Python, Roboflow, OpenCV, and REST APIs, robust batch processing and result validation."
-      ],
-      links: [
-        { label: "Roboflow", url: "https://universe.roboflow.com/spot-it-n0ukj/spot-it-stayf" },
-        { label: "Repo", url: "https://github.com/DDH2004/Spot_It" }
-      ]
-    },
-    {
-      title: "BART Aerial Track Inspection System",
-      description: [
-        "Developed Django web app for automated track inspection using computer vision, deep learning, OCR, and PDF reporting, collaborated with BART mentors."
-      ]
-    }
   ],
-  certifications: [
-    { name: "Google Project Management: Specialization" },
-    { name: "Google Business Intelligence" },
-    { name: "San Diego Supercomputing Center Summer Institute on HPC and Data Science" },
-    { name: "IBM Skillsbuild Course on Data Analytics and Visualization" },
-    { name: "Comptia A+ certification (In-progress)" },
-    { name: "Project Destined Commercial Real estate Certification" },
-    { name: "Project Destined Commercial Financial Modeling" },
-    { name: "Deeplearning.AI Tensorflow developer course" },
-    { name: "Uplimit Google fundamentals in SRE" },
-    { name: "Zscaler Cybersecurity Fundamentals Associate Exam" },
-    { name: "Codepath Intro to Cybersecurity" },
-    { name: "Codepath Intermediate Cybersecurity" },
-    { name: "UC Merced Marketing 101" },
-    { name: "UC Merced Machine Shop Safety" },
-    { name: "How to Network When You Don't Like Networking (Feb 2024)" },
-    { name: "The Power of the Minimalist Entrepreneur (Mar 2024)" },
-    { name: "How to Give Feedback People Can Actually Use (Mar 2024)" },
-    { name: "Psychological Safety: Clear Blocks to Innovation, Collaboration, and Risk-Taking" },
-    { name: "How to Set Goals When Everything Feels Like a Priority" },
-    { name: "Google Cloud Skills: Boost Generative AI Fundamental" },
-    { name: "AWS APAC Solutions Architecture virtual experience program on Forage - January 2025" },
-    { name: "Datacom Introduction to Cloud Job Simulation on Forage - January 2025" },
-    { name: "Goldman Sachs Software Engineering Virtual Experience Program on Forage - January 2025" }
+
+  skills: [
+    {
+      label: "Languages",
+      items: ["Python", "C++", "TypeScript", "JavaScript", "SQL", "R"],
+    },
+    {
+      label: "Backend & Systems",
+      items: [
+        "FastAPI",
+        "Django",
+        "Flask",
+        "Node.js",
+        "Celery",
+        "Redis",
+        "WebSockets",
+        "REST APIs",
+      ],
+    },
+    {
+      label: "ML & Data",
+      items: [
+        "TensorFlow",
+        "OpenCV",
+        "LangChain",
+        "FAISS",
+        "NumPy",
+        "Pandas",
+        "RAG Pipelines",
+        "NeMo",
+      ],
+    },
+    {
+      label: "Infrastructure & DevOps",
+      items: [
+        "Docker",
+        "Kubernetes",
+        "GitHub Actions",
+        "AWS",
+        "Google Cloud",
+        "PostgreSQL",
+        "MongoDB",
+        "Supabase",
+      ],
+    },
   ],
-  clubs: [
-    { name: "HackMerced", role: "Coordinator and Director", date: "August 2023 - May 2025" },
-    { name: "Association for Computing Machinery", role: "Secretary", date: "March 2023 - May 2025" },
-    { name: "BobCAD", role: "Board Member, Ex-VP, and Treasurer", date: "August 2023 - May 2025" },
-    { name: "NSF Innovation Corps", role: "Teal Lead", date: "August 2023 - May 2025" }
-  ]
+
+  about: [
+    "CS graduate from UC Merced with experience building distributed ML systems, backend services, and computer vision pipelines.",
+    "Previously interned at Lawrence Livermore National Laboratory (NNSA) and Zscaler. Research work in IoT sensor fusion at IoT4Ag.",
+    "Looking for software engineering roles in backend, systems, or ML infrastructure.",
+  ],
 };
 
 export default cvData;
