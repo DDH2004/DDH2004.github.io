@@ -142,9 +142,9 @@ const cvData: CVData = {
   ],
 
   about: [
-    "CS graduate from UC Merced with experience building distributed ML systems, backend services, and computer vision pipelines.",
-    "Previously interned at Lawrence Livermore National Laboratory (NNSA) and Zscaler. Research work in IoT sensor fusion at IoT4Ag.",
-    "Looking for software engineering roles in backend, systems, or ML infrastructure.",
+    "I’m a Computer Science graduate interested in building reliable software systems that combine backend engineering, data processing, and applied machine learning.",
+    "Through internships, research, and hackathon projects, I’ve worked on end-to-end systems — from data ingestion and model pipelines to APIs, dashboards, and user-facing tools.",
+    "I enjoy working close to the system boundary, where performance, reliability, and practical constraints matter as much as correctness. I’m especially interested in roles where I can continue growing as a software engineer while working on real-world problems."
   ],
 };
 
