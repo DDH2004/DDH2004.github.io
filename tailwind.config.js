@@ -5,7 +5,13 @@ export default {
     extend: {
       colors: {
         dark: '#0a0a0f',
-        accent: '#81a9ae',
+        accent: '#5eead4',
+        'accent-dim': '#2dd4bf',
+        muted: '#94a3b8',
+      },
+      fontFamily: {
+        display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+        body: ['"Inter"', 'system-ui', 'sans-serif'],
       },
     },
   },

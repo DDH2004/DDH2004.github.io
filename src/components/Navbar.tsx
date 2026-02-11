@@ -11,11 +11,11 @@ export function Navbar({ resumePath }: { resumePath: string }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-dark/80 backdrop-blur-md border-b border-white/[0.06]">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-[#0a0a0f]/80 backdrop-blur-md border-b border-white/[0.06]">
       <div className="max-w-[1100px] mx-auto px-6 flex justify-between items-center h-14">
         <a
           href="#"
-          className="text-sm font-semibold text-white tracking-wide hover:text-accent transition-colors"
+          className="font-display text-sm font-semibold text-white tracking-wide hover:text-accent transition-colors"
         >
           AD
         </a>
@@ -56,7 +56,7 @@ export function Navbar({ resumePath }: { resumePath: string }) {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-dark/95 backdrop-blur-md border-t border-white/[0.06]">
+        <div className="md:hidden bg-[#0a0a0f]/95 backdrop-blur-md border-t border-white/[0.06]">
           <ul className="flex flex-col px-6 py-4 gap-4">
             {navItems.map((item) => (
               <li key={item.href}>
